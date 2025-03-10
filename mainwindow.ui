@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>240</width>
-    <height>557</height>
+    <height>641</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,18 +18,113 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>10</y>
       <width>221</width>
-      <height>316</height>
+      <height>430</height>
      </rect>
     </property>
     <layout class="QVBoxLayout" name="processVerticalLayout">
      <item>
-      <widget class="QPushButton" name="selectFolderPushButton">
+      <widget class="QPushButton" name="deleteSelectedPushButton">
        <property name="text">
-        <string>Selectionner dossier</string>
+        <string>Supprimer selection de dossier</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addFolderPushButton">
+       <property name="text">
+        <string>Ajouter un dossier</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QGridLayout" name="numberOfFileGridLayout">
+       <item row="0" column="2">
+        <widget class="QLabel" name="numberOfVideoFilesParamLabel">
+         <property name="text">
+          <string>Videos:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QLabel" name="numberOfImageFilesValueLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="0">
+        <widget class="QLabel" name="numberOfImageFilesParamLabel">
+         <property name="text">
+          <string>Images:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="0">
+        <widget class="QLabel" name="numberOfArchiveFilesParamLabel">
+         <property name="text">
+          <string>Archives:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="numberOfDocumentFilesParamLabel">
+         <property name="text">
+          <string>Documents:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="3">
+        <widget class="QLabel" name="numberOfVideoFilesValueLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QLabel" name="numberOfDocumentFilesValueLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2">
+        <widget class="QLabel" name="numberOfAudioFilesParamLabel">
+         <property name="text">
+          <string>Audios:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="3">
+        <widget class="QLabel" name="numberOfAudioFilesValueLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="3">
+        <widget class="QLabel" name="numberOfOtherFilesValueLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2">
+        <widget class="QLabel" name="numberOfOtherFilesParamLabel">
+         <property name="text">
+          <string>Autres:</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1">
+        <widget class="QLabel" name="numberOfArchiveFilesValueLabel">
+         <property name="text">
+          <string>0</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <widget class="QLabel" name="typedeFichierLabel">
@@ -60,7 +155,7 @@
           <bool>true</bool>
          </property>
          <property name="checked">
-          <bool>true</bool>
+          <bool>false</bool>
          </property>
         </widget>
        </item>
@@ -128,7 +223,30 @@
          </property>
         </widget>
        </item>
+       <item row="2" column="1">
+        <widget class="QCheckBox" name="optionsOtherCheckBox">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="text">
+          <string>Autres</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
       </layout>
+     </item>
+     <item>
+      <widget class="QLabel" name="selectSizeLabel">
+       <property name="text">
+        <string>Taille à traiter : 0Go</string>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLabel" name="FiltreLabel">
@@ -167,31 +285,14 @@
       </widget>
      </item>
      <item>
-      <layout class="QHBoxLayout" name="horizontalLayout_2">
-       <item>
-        <widget class="QCheckBox" name="filterPHashCheckBox">
-         <property name="enabled">
-          <bool>false</bool>
-         </property>
-         <property name="text">
-          <string>pHash</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QSpinBox" name="pHashThresholdSpinBox">
-         <property name="maximum">
-          <number>15</number>
-         </property>
-         <property name="value">
-          <number>5</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
+      <widget class="QPushButton" name="findDuplicatePushButton">
+       <property name="text">
+        <string>Trouver doublon</string>
+       </property>
+      </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="deleteDoublonsPushButton">
+      <widget class="QPushButton" name="deleteDuplicatePushButton">
        <property name="text">
         <string>Supprimer doublons</string>
        </property>
@@ -203,9 +304,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>311</y>
+      <y>450</y>
       <width>221</width>
-      <height>211</height>
+      <height>151</height>
      </rect>
     </property>
    </widget>
@@ -213,7 +314,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>527</y>
+      <y>610</y>
       <width>221</width>
       <height>23</height>
      </rect>

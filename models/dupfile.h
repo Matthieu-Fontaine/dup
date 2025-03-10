@@ -29,10 +29,10 @@ public:
     bool duplicateByFileName = false;
     bool duplicateBySizeAndDate = false;
     bool duplicateBySHA256 = false;
-    bool duplicateByPHash = false;
+
+    std::vector<DupFile*> duplicates; // Liste des fichiers similaires à ce fichier
 
     QString calculateSHA256();
-    quint64 calculatePHash();
 
 private:
 

@@ -39,36 +39,3 @@ QString DupFile::calculateSHA256() {
 
     return hash.result().toHex();  // Retourne le hash sous forme hexadécimale
 }
-
-quint64 DupFile::calculatePHash() {
-    // Charger l'image
-    QImage image(fileInfo.filePath());
-    if (image.isNull()) {
-        qWarning() << "Impossible de charger l'image :" << fileInfo.filePath();
-        return 0;  // Retourner 0 si l'image ne peut pas être chargée
-    }
-
-    // Convertir l'image en niveaux de gris pour simplifier la comparaison
-    image = image.convertToFormat(QImage::Format_Grayscale8);
-
-    // Redimensionner l'image pour une comparaison plus rapide et fiable
-    image = image.scaled(32, 32, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-    // Convertir l'image en une série de bits
-    QByteArray byteArray;
-    for (int y = 0; y < image.height(); ++y) {
-        for (int x = 0; x < image.width(); ++x) {
-            // Obtenir l'intensité de gris du pixel
-            int pixelValue = qGray(image.pixel(x, y));
-            byteArray.append(static_cast<char>(pixelValue > 128 ? 1 : 0)); // 1 pour pixel clair, 0 pour pixel sombre
-        }
-    }
-
-    // Calculer le perceptual hash comme un hash de ces bits
-    quint64 pHash = 0;
-    for (int i = 0; i < byteArray.size(); ++i) {
-        pHash |= (static_cast<quint64>(byteArray[i]) << (i * 8));
-    }
-
-    return pHash;  // Retourner le pHash sous forme d'un entier (64 bits)
-}

@@ -25,6 +25,8 @@ private:
     Ui::MainWindow *ui;
 
     int maxSizeProgressBar;
+    std::vector<DupFile> dup_files;
+    std::vector<DupFile> filteredFiles;
 
     void addUserLog(const QString &log);
 
@@ -32,13 +34,18 @@ private:
     void findDuplicateFileName(std::vector<DupFile> &files);
     void findDuplicateSHA256(std::vector<DupFile> &files);
     void findDuplicateSizeAndDate(std::vector<DupFile> &files);
-    void findDuplicatePHash(std::vector<DupFile> &files, int similarityThreshold);
 
-    int hammingDistance(quint64 hash1, quint64 hash2);
-
+    void afficherDoublons(const std::vector<DupFile> &files);
+    int countActiveFilters();
+    double getSizeToComputeInGo(const std::vector<DupFile> &dup_files);
 
 private slots:
     void selectFolderPushButton();
+    void findDuplicatePushButton();
+    void deleteDuplicatePushButton();
+    void deleteSelectedPushButton();
+    void onOptionsCheckBoxStateChanged();
+
 
 };
 #endif // MAINWINDOW_H
